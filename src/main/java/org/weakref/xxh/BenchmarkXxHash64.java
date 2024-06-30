@@ -49,6 +49,13 @@ public class BenchmarkXxHash64
         return XxHash64MemorySegment.hash(data.segment());
     }
 
+    @Benchmark
+    public long xxhash64Native(BenchmarkData data, ByteCounter counter)
+    {
+        counter.add(data.segment().byteSize());
+        return XxHash64Native.hash(data.segment());
+    }
+
     public static void main(String[] args)
             throws RunnerException
     {

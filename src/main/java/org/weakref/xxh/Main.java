@@ -1,3 +1,4 @@
+import org.weakref.xxh.XxHash64Native;
 import org.weakref.xxh.XxHash64MemorySegment;
 import org.weakref.xxh.XxHash64Unsafe;
 
@@ -20,6 +21,7 @@ void main()
     byte[] data = new byte[16384];
     ThreadLocalRandom.current().nextBytes(data);
 
-    System.out.println(XxHash64Unsafe.hash(data));
-    System.out.println(XxHash64MemorySegment.hash(MemorySegment.ofArray(data)));
+    System.out.println("Native:        " + XxHash64Native.hash(MemorySegment.ofArray(data)));
+    System.out.println("Unsafe:        " + XxHash64Unsafe.hash(data));
+    System.out.println("MemorySegment: " + XxHash64MemorySegment.hash(MemorySegment.ofArray(data)));
 }
